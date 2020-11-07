@@ -102,13 +102,15 @@ def all_possible_moves(state):
 
 def successor_function(state):
     outcomes = []
+    visual_rep = []
     backup_state = deepcopy(state)
     for row in range(7):
         for col in range(7):
             moves = possible_moves_from_index(backup_state, [row, col])
             if len(moves) > 0:
-                print(row, col, moves)
+                
                 for m in moves:
+                    visual_rep.append([[row, col, "==>", m]])
                     backup_state[row][col], backup_state[m[0]][m[1]] = backup_state[m[0]][m[1]], backup_state[row][col]
                     if col == m[1] and row < m[0]:
                         backup_state[row+1][col] = 0
@@ -118,17 +120,20 @@ def successor_function(state):
                         backup_state[row][col+1] = 0
                     elif col > m[1] and row == m[0]:
                         backup_state[row][col-1] = 0
+                    visual_rep.append(backup_state)
                     outcomes.append(backup_state)
                     backup_state = deepcopy(state)
-    return outcomes
+    return outcomes, visual_rep
 
     
-out = successor_function(test_state)
+out, vis = successor_function(test_state)
 
+print("initial test state")
 for i in test_state:
     print (i)
 print("\n##################\n")
-for i in out:
+print("action, states")
+for i in vis:
     for f in i:
         print (f)
     print("\n")
