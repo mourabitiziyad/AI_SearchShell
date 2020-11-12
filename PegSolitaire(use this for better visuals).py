@@ -30,23 +30,14 @@ goal_state = [          [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2]   ]
 
-
-
-def show_state(state):
-    # file1 = open('possible_moves.txt', 'a') 
-    # for i in state:
-    #     file1.writelines(str(i))
-    #     file1.write("\n")
-    for i in state:
-        print(i)
-    print('\n')
-    # file1.write("\n")
-
 def goal_test(state, goal_state): # Make it return a bool to be used in search strategy
     if state == goal_state:
-        print("hallelujah!")
+        return True
     else:
-        print("oh no")
+        return False
+
+def step_cost():
+    return 1
 
 def possible_moves_from_index(state, index):
     moves = [] # 2D list to return possible indices to which the peg can move to
@@ -84,22 +75,6 @@ def possible_moves_from_index(state, index):
         # print("bruh mark")
     return moves
 
-# def all_possible_moves(state):
-#     # all_moves = []
-#     for row in range(7):
-#         for col in range(7):
-#             moves = possible_moves_from_index(state, [row, col])
-#             if len(moves) > 0: # to be added before using possible_moves_from_index IN SEARCH STRATEGY
-#                 print(row, ",", col, ":", moves) # to be replaced by return (action, state) because successor function
-
-def all_possible_moves(state):
-    # all_moves = []
-    for row in range(7):
-        for col in range(7):
-            moves = possible_moves_from_index(state, [row, col])
-            if len(moves) > 0: # to be added before using possible_moves_from_index IN SEARCH STRATEGY
-                print(row, ",", col, ":", moves) # to be replaced by return (action, state) because successor function
-
 def successor_function(state):
     outcomes = []
     visual_rep = []
@@ -108,7 +83,6 @@ def successor_function(state):
         for col in range(7):
             moves = possible_moves_from_index(backup_state, [row, col])
             if len(moves) > 0:
-                
                 for m in moves:
                     visual_rep.append([[row, col, "==>", m]])
                     backup_state[row][col], backup_state[m[0]][m[1]] = backup_state[m[0]][m[1]], backup_state[row][col]
@@ -124,10 +98,18 @@ def successor_function(state):
                     outcomes.append(backup_state)
                     backup_state = deepcopy(state)
     return outcomes, visual_rep
+def heuristic_function(state):  # reaching the goal entails the number of pegs reducing until we reach 1 peg in the middle with no possible moves.
+                                # the heuristic will rely on the number of remaining pegs and the possible moves from each one 
+    count = 0
+    for row in range(7):
+        for col in range(7):
+            moves = possible_moves_from_index(state, [row, col])
+            count += len(moves)
+    return count
 
-    
 out, vis = successor_function(test_state)
-
+count = heuristic_function(test_state)
+print("the count is: ", count)
 print("initial test state")
 for i in test_state:
     print (i)
