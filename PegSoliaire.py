@@ -122,9 +122,18 @@ def successor_function(state):
                     backup_state = deepcopy(state)
     return outcomes
 
+def heuristic_function(state):  # reaching the goal entails the number of pegs reducing until we reach 1 peg in the middle with no possible moves.
+                                # the heuristic will rely on the number of remaining pegs and the possible moves from each one 
+    count = 0
+    for row in range(7):
+        for col in range(7):
+            moves = possible_moves_from_index(state, [row, col])
+            count += len(moves)
+    return count
     
 out = successor_function(test_state)
-
+count = heuristic_function(test_state)
+print("the count is: ", count)
 for i in test_state:
     print (i)
 print("\n##################\n")
