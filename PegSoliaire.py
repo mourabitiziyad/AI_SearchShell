@@ -48,6 +48,9 @@ def goal_test(state, goal_state): # Make it return a bool to be used in search s
     else:
         print("oh no")
 
+def step_cost():
+    return 1
+
 def possible_moves_from_index(state, index):
     moves = [] # 2D list to return possible indices to which the peg can move to
     row, column = index[0], index[1]
