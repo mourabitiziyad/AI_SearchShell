@@ -38,7 +38,7 @@ def move1(Li,Ri, direction, op):
     else: #op == 'missionaries' (move missionary from left to right)
       Ri[0]+=1
       Li[0]-=1
-   else: #direction=='Left'
+  else: #direction=='Left'
     if op == 'cannibals': #move cannibal from Right to Left 
       Ri[1]-=1
       Li[1]+=1
