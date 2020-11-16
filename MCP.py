@@ -280,6 +280,9 @@ def successor_function(orig_L, orig_R):
         Ri = deepcopy(orig_R)
     return L_outcomes, R_outcomes
 
+def heuristic_function(Li):
+  return (Li[0] + Li[1])
+
 """"
 Need to append to outcomes initialize 
 and use a test case
