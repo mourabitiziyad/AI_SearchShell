@@ -22,7 +22,7 @@ def goal_test(state, goal_state):
         return False
 
 
-def possible_moves(state):
+def successor_function(state):
     outcomes = []
     for i in range(3):  # Locating the blank tile
         for j in range(3):
