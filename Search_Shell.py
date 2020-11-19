@@ -25,13 +25,22 @@ goal_state = [          [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2]   ]
 
-test_state = [          [2, 2, 0, 1, 1, 2, 2], 
-                        [2, 2, 1, 1, 0, 2, 2],
-                        [1, 1, 0, 1, 0, 1, 1],
-                        [1, 0, 0, 0, 0, 1, 1],
-                        [0, 1, 0, 1, 0, 0, 1],
-                        [2, 2, 0, 0, 0, 2, 2], 
+test_state = [          [2, 2, 0, 0, 0, 2, 2], 
+                        [2, 2, 0, 0, 0, 2, 2],
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 1, 0, 1, 1, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0], 
+                        [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2]   ]
+
+# test_state = [          [2, 2, 0, 0, 0, 2, 2], 
+#                         [2, 2, 0, 0, 0, 2, 2],
+#                         [0, 0, 0, 0, 0, 0, 0],
+#                         [0, 1, 1, 0, 0, 0, 0],
+#                         [0, 0, 0, 0, 0, 0, 0], 
+#                         [2, 2, 0, 0, 0, 2, 2],
+#                         [2, 2, 0, 0, 0, 2, 2]   ]
+
 
 # initial_state = np.array([[7, 1, 2],
 #                           [3, 4, 5],
@@ -46,13 +55,11 @@ def uninformed_BFS(state, goal):
         return state
     q = Queue()
     checked = state
-    print(checked)
     nodes = successor_function(state)
     for n in nodes:
         q.put(n)
     while q.empty() == False:
         n = q.get_nowait()
-        print(n)
         if(goal_test(n, goal)):
             return n
         checked.append(n)
