@@ -8,6 +8,7 @@ from Eightpuzzle import successor_function, goal_test, heuristic
 #     import Eightpuzzle
 
 # We should normally/probably take these as input and make them into the format we need
+
 initial_state = [       [2, 2, 1, 1, 1, 2, 2], 
                         [2, 2, 1, 1, 1, 2, 2],
                         [1, 1, 1, 1, 1, 1, 1],
@@ -23,6 +24,7 @@ goal_state = [          [2, 2, 0, 0, 0, 2, 2],
                         [0, 0, 0, 0, 0, 0, 0], 
                         [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2]   ]
+
 initial_state = np.array([[7, 1, 2],
                           [3, 4, 5],
                           [6, 0, 8]])
@@ -30,7 +32,6 @@ initial_state = np.array([[7, 1, 2],
 goal_state = np.array([[0, 1, 2],
                        [3, 4, 5],
                        [6, 7, 8]])
-
 
 def uninformed_BFS(state, goal):
     if(goal_test(state, goal)):
