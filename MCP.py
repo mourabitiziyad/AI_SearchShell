@@ -19,11 +19,15 @@ RG = [3,3,1]
 RT = [2,2,1]
 LT = [1,1,0]
 
-def goal_test(L, R, LG, RG):
-    if L == LG and R == RG:
-        return True
-    else:
-        return False
+def goal_test(state, goal):
+  L = state[0:3]
+  R = state[3:]
+  LG = goal[0:3]
+  RG = goal[3:]
+  if L == LG and R == RG:
+      return True
+  else:
+      return False
 
 def step_cost():
     return 1
@@ -94,7 +98,9 @@ When using successor function in search shell, need to have a condition if goal_
 We assume that the successor function does not expand the goal_node.
 
 """
-def successor_function(orig_L, orig_R):
+def successor_function(state):
+    orig_L = state[0:3]
+    orig_R = state[3:]
     L_outcomes, R_outcomes = [], []
     C, M = 'cannibals','missionaries' # ignore
     Li = deepcopy(orig_L)
@@ -278,9 +284,13 @@ def successor_function(orig_L, orig_R):
         R_outcomes.append(Ri)
         Li = deepcopy(orig_L)
         Ri = deepcopy(orig_R)
-    return L_outcomes, R_outcomes
+    final = []
+    for i in range(len(L_outcomes)):
+      final.append(L_outcomes[i] + R_outcomes[i])
+    return final
 
-def heuristic_function(Li):
+def heuristic(state):
+  Li = state[0:3]
   return (Li[0] + Li[1])
 
 '''
@@ -296,6 +306,7 @@ In this scenario, the number of people in the left bank (in this relaxed problem
 LT = [3,3,1]
 RT = [0,0,0]
 
-L_out, R_out = successor_function(LT, RT)
-for i in range(len(L_out)):
-  print("From, ", LT, RT, "to", L_out[i], " and", R_out[i])
+# final = successor_function(LT+RT)
+# goa = goal_test(LT+RT, LT+RT)
+# print(goa)
+
