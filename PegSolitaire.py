@@ -42,37 +42,41 @@ def step_cost():
 def possible_moves_from_index(state, index):
     moves = [] # 2D list to return possible indices to which the peg can move to
     row, column = index[0], index[1]
-    if state[row][column] == 1:
-        try: # Try/Catch to avoid out of range errors
-            if state[row - 2][column] == 0 and state[row - 1][column] == 1 and row-2 >= 0: # Make sure we don't include a hole with a peg or an "out of bound" (2)
-                moves.append([row-2, column]) # Append the index of the empty hole to the possible moves array
-        except IndexError:
+    try:
+        if state[row][column] == 1:
+            try: # Try/Catch to avoid out of range errors
+                if state[row - 2][column] == 0 and state[row - 1][column] == 1 and row-2 >= 0: # Make sure we don't include a hole with a peg or an "out of bound" (2)
+                    moves.append([row-2, column]) # Append the index of the empty hole to the possible moves array
+            except IndexError:
+                print("errrrrrrrrr")
+                pass
+            
+            try:
+                if state[row + 2][column] == 0 and state[row + 1][column] == 1:
+                    moves.append([row+2, column])
+            except IndexError:
+                pass
+            
+            try:
+                if state[row][column - 2] == 0 and state[row][column - 1] == 1 and column - 2 >= 0:
+                    moves.append([row, column - 2])
+            except IndexError:
+                pass
+            
+            try:
+                if state[row][column + 2] == 0 and state[row][column + 1] == 1:
+                    moves.append([row, column + 2])
+            except IndexError:
+                pass
+            
+        elif state[row][column] == 0:
+            # print("something is wrong with the fringe")
             pass
-        
-        try:
-            if state[row + 2][column] == 0 and state[row + 1][column] == 1:
-                moves.append([row+2, column])
-        except IndexError:
+        else:
             pass
-        
-        try:
-            if state[row][column - 2] == 0 and state[row][column - 1] == 1 and column - 2 >= 0:
-                moves.append([row, column - 2])
-        except IndexError:
-            pass
-        
-        try:
-            if state[row][column + 2] == 0 and state[row][column + 1] == 1:
-                moves.append([row, column + 2])
-        except IndexError:
-            pass
-        
-    elif state[row][column] == 0:
-        # print("something is wrong with the fringe")
-        pass
-    else:
-        pass
-        # print("bruh mark")
+            # print("bruh mark")
+    except:
+        IndexError
     return moves
 
 def successor_function(state):
@@ -98,7 +102,7 @@ def successor_function(state):
                     outcomes.append(backup_state)
                     backup_state = deepcopy(state)
     return outcomes, visual_rep
-def heuristic_function(state):  # reaching the goal entails the number of pegs reducing until we reach 1 peg in the middle with no possible moves.
+def heuristic(state):  # reaching the goal entails the number of pegs reducing until we reach 1 peg in the middle with no possible moves.
                                 # the heuristic will rely on the number of remaining pegs and the possible moves from each one 
     count = 0
     for row in range(7):
@@ -107,16 +111,16 @@ def heuristic_function(state):  # reaching the goal entails the number of pegs r
             count += len(moves)
     return count
 
-out, vis = successor_function(test_state)
-count = heuristic_function(test_state)
-print("the count is: ", count)
-print("initial test state")
-for i in test_state:
-    print (i)
-print("\n##################\n")
-print("action, states")
-for i in vis:
-    for f in i:
-        print (f)
-    print("\n")
+# out, vis = successor_function(test_state)
+# count = heuristic(test_state)
+# print("the count is: ", count)
+# print("initial test state")
+# for i in test_state:
+#     print (i)
+# print("\n##################\n")
+# print("action, states")
+# for i in vis:
+#     for f in i:
+#         print (f)
+#     print("\n")
  

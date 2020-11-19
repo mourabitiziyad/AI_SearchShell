@@ -1,12 +1,28 @@
 # function names are successor_function, goal_test, and heuristic
 from queue import Queue
 import numpy as np
+# from Eightpuzzle import successor_function, goal_test, heuristic
 from Eightpuzzle import successor_function, goal_test, heuristic
 # choice = eval(input("1 for 8 puzzle, stkhra you for the rest: "))
 # if choice == 1:
 #     import Eightpuzzle
 
 # We should normally/probably take these as input and make them into the format we need
+initial_state = [       [2, 2, 1, 1, 1, 2, 2], 
+                        [2, 2, 1, 1, 1, 2, 2],
+                        [1, 1, 1, 1, 1, 1, 1],
+                        [1, 1, 1, 0, 1, 1, 1],
+                        [1, 1, 1, 1, 1, 1, 1],
+                        [2, 2, 1, 1, 1, 2, 2], 
+                        [2, 2, 1, 1, 1, 2, 2]   ]
+
+goal_state = [          [2, 2, 0, 0, 0, 2, 2], 
+                        [2, 2, 0, 0, 0, 2, 2],
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 1, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0], 
+                        [2, 2, 0, 0, 0, 2, 2],
+                        [2, 2, 0, 0, 0, 2, 2]   ]
 initial_state = np.array([[7, 1, 2],
                           [3, 4, 5],
                           [6, 0, 8]])
