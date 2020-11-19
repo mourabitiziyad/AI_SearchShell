@@ -2,7 +2,8 @@
 from queue import Queue
 import numpy as np
 # from Eightpuzzle import successor_function, goal_test, heuristic
-from PegSolitaire import successor_function, goal_test, heuristic
+# from PegSolitaire import successor_function, goal_test, heuristic
+from MCP import successor_function, goal_test, heuristic
 # choice = eval(input("1 for 8 puzzle, stkhra you for the rest: "))
 # if choice == 1:
 #     import Eightpuzzle
@@ -33,22 +34,9 @@ test_state = [          [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2]   ]
 
-# test_state = [          [2, 2, 0, 0, 0, 2, 2], 
-#                         [2, 2, 0, 0, 0, 2, 2],
-#                         [0, 0, 0, 0, 0, 0, 0],
-#                         [0, 1, 1, 0, 0, 0, 0],
-#                         [0, 0, 0, 0, 0, 0, 0], 
-#                         [2, 2, 0, 0, 0, 2, 2],
-#                         [2, 2, 0, 0, 0, 2, 2]   ]
+initial_state = [3,3,1,0,0,0]
+goal_state = [0,0,0,3,3,1]
 
-
-# initial_state = np.array([[7, 1, 2],
-#                           [3, 4, 5],
-#                           [6, 0, 8]])
-
-# goal_state = np.array([[0, 1, 2],
-#                        [3, 4, 5],
-#                        [6, 7, 8]])
 
 def uninformed_BFS(state, goal):
     if(goal_test(state, goal)):
@@ -56,6 +44,7 @@ def uninformed_BFS(state, goal):
     q = Queue()
     checked = state
     nodes = successor_function(state)
+    print(nodes)
     for n in nodes:
         q.put(n)
     while q.empty() == False:
@@ -81,5 +70,4 @@ def uninformed_BFS(state, goal):
             #     print('H')
     return 0
 
-
-print(uninformed_BFS(test_state, goal_state))
+print(uninformed_BFS(initial_state, goal_state))
