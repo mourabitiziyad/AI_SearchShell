@@ -157,6 +157,6 @@ print()
 print()
 
 
-print(heuristic(initial_state, goal_state))
+# print(heuristic(initial_state, goal_state))
 
 
