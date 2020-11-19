@@ -101,7 +101,7 @@ def successor_function(state):
                     visual_rep.append(backup_state)
                     outcomes.append(backup_state)
                     backup_state = deepcopy(state)
-    return outcomes, visual_rep
+    return outcomes
 def heuristic(state):  # reaching the goal entails the number of pegs reducing until we reach 1 peg in the middle with no possible moves.
                                 # the heuristic will rely on the number of remaining pegs and the possible moves from each one 
     count = 0
