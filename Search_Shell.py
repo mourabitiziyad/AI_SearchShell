@@ -164,7 +164,5 @@ def reportPath(N):
     print("The path taken was: ")
     path = N.getPath()
     for n in path:
-        print(n[0])
-        print(n[1])
-        print(n[2])
+        print(n)
         print()

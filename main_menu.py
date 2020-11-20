@@ -57,19 +57,19 @@ def peg():
     choice = int(choice)
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
-        print(Search_Shell.uninformed_DFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
+        Search_Shell.uninformed_DFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state)
         peg()
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
-        print(Search_Shell.uninformed_BFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
+        Search_Shell.uninformed_BFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state)
         peg()
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
-        print(Search_Shell.greedyBFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
+        Search_Shell.greedyBFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state)
         peg()
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
-        print(Search_Shell.AStar(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
+        Search_Shell.AStar(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state)
         peg()
     elif choice == 5:
         main()
@@ -105,19 +105,19 @@ def eight():
     choice = int(choice)
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
-        print(Search_Shell.uninformed_DFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
+        Search_Shell.uninformed_DFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state)
         eight()
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
-        print(Search_Shell.uninformed_BFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
+        Search_Shell.uninformed_BFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state)
         eight()
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
-        print(Search_Shell.greedyBFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
+        Search_Shell.greedyBFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state)
         eight()
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
-        print(Search_Shell.AStar(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
+        Search_Shell.AStar(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state)
         eight()
     elif choice == 5:
         main()
@@ -153,19 +153,19 @@ def cannibals():
     choice = int(choice)
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
-        print(Search_Shell.uninformed_DFS(MCP, MCP_initial_state, MCP_goal_state).getPath())
+        Search_Shell.uninformed_DFS(MCP, MCP_initial_state, MCP_goal_state)
         cannibals()
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
-        print(Search_Shell.uninformed_BFS(MCP, MCP_initial_state, MCP_goal_state).getPath())
+        Search_Shell.uninformed_BFS(MCP, MCP_initial_state, MCP_goal_state)
         cannibals()
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
-        print(Search_Shell.greedyBFS(MCP, MCP_initial_state, MCP_goal_state).getPath())
+        Search_Shell.greedyBFS(MCP, MCP_initial_state, MCP_goal_state)
         cannibals()
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
-        print(Search_Shell.AStar(MCP, MCP_initial_state, MCP_goal_state).getPath())
+        Search_Shell.AStar(MCP, MCP_initial_state, MCP_goal_state)
         cannibals()
     elif choice == 5:
         main()
