@@ -10,7 +10,8 @@ def uninformed_DFS(game, state, goal):
     G.setGoal(goal)
     beg = game.node(state,0)
     if(game.goal_test(state, goal)):
-        return state
+        reportPath(beg)
+        return beg
     fringe = [] # implemented as a stack 
     checked = [] # expanded/closed list 
     nodes = [] # list of successor states
@@ -27,6 +28,7 @@ def uninformed_DFS(game, state, goal):
     while len(fringe) != 0:
         N = fringe.pop() 
         if(game.goal_test(N.puzzle, goal)):
+            reportPath(N)
             return N
         checked.append(N.puzzle) 
         nodes = game.successor_function(N.puzzle)
@@ -52,7 +54,8 @@ def uninformed_BFS(game, state, goal):
     G.setGoal(goal)
     beg = game.node(state,0)
     if(game.goal_test(state, goal)):
-        return state
+        reportPath(beg)
+        return beg
     q = Queue() # This is the fringe
     checked = [] # This is the closed list
     checked.append(state)
@@ -63,6 +66,7 @@ def uninformed_BFS(game, state, goal):
     while q.empty() == False:
         N = q.get_nowait()
         if(game.goal_test(N.puzzle, goal)):
+            reportPath(N)
             return N
         checked.append(N.puzzle)
         nodes = game.successor_function(N.puzzle)
@@ -80,14 +84,15 @@ def uninformed_BFS(game, state, goal):
                 q.put(I)
             # else:
             #     print('H')
-    return beg
+    return 0
 
 def greedyBFS(game, state, goal):
     G = game.node(goal, 0)
     G.setGoal(goal)
     beg = game.node(state,0)
     if(game.goal_test(state, goal)):
-        return state
+        reportPath(beg)
+        return beg
     q = PriorityQueue() # This is the fringe
     checked = [] # This is the closed list
     checked.append(state)
@@ -101,6 +106,7 @@ def greedyBFS(game, state, goal):
         # print(n)
         # return
         if(game.goal_test(N.puzzle, goal)):
+            reportPath(N)
             return N
         checked.append(N.puzzle)
         nodes = game.successor_function(N.puzzle)
@@ -122,7 +128,8 @@ def AStar(game, state, goal):
     G.setGoal(goal)
     beg = game.node(state,0)
     if(game.goal_test(state, goal)):
-        return state
+        reportPath(beg)
+        return beg
     q = PriorityQueue() # this is the frontier
     checked = [] # this is the closed list
     checked.append(state)
@@ -136,6 +143,7 @@ def AStar(game, state, goal):
         # print(n)
         # return
         if(game.goal_test(N.puzzle, goal)):
+            reportPath(N)
             return N
         checked.append(N.puzzle)
         nodes = game.successor_function(N.puzzle)
@@ -152,11 +160,11 @@ def AStar(game, state, goal):
             
     return 0
 
-# print(uninformed_BFS(initial_state, goal_state))
-# print()
-# print(greedyBFS(initial_state, goal_state).getPath())
-# print()
-# d = uninformed_BFS(initial_state, goal_state).getPath()
-# print(d)
-# print()
-# print(AStar(initial_state, goal_state).getPath() )
+def reportPath(N):
+    print("The path taken was: ")
+    path = N.getPath()
+    for n in path:
+        print(n[0])
+        print(n[1])
+        print(n[2])
+        print()
