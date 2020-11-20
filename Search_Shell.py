@@ -29,6 +29,8 @@ def uninformed_DFS(game, state, goal):
         N = fringe.pop() 
         if(game.goal_test(N.puzzle, goal)):
             reportPath(N)
+            checked.append(N.puzzle)
+            reportExpanded(checked)
             return N
         checked.append(N.puzzle) 
         nodes = game.successor_function(N.puzzle)
@@ -67,6 +69,8 @@ def uninformed_BFS(game, state, goal):
         N = q.get_nowait()
         if(game.goal_test(N.puzzle, goal)):
             reportPath(N)
+            checked.append(N.puzzle)
+            reportExpanded(checked)
             return N
         checked.append(N.puzzle)
         nodes = game.successor_function(N.puzzle)
@@ -107,6 +111,8 @@ def greedyBFS(game, state, goal):
         # return
         if(game.goal_test(N.puzzle, goal)):
             reportPath(N)
+            checked.append(N.puzzle)
+            reportExpanded(checked)
             return N
         checked.append(N.puzzle)
         nodes = game.successor_function(N.puzzle)
@@ -144,6 +150,8 @@ def AStar(game, state, goal):
         # return
         if(game.goal_test(N.puzzle, goal)):
             reportPath(N)
+            checked.append(N.puzzle)
+            reportExpanded(checked)
             return N
         checked.append(N.puzzle)
         nodes = game.successor_function(N.puzzle)
@@ -161,8 +169,17 @@ def AStar(game, state, goal):
     return 0
 
 def reportPath(N):
+
     print("The path taken was: ")
     path = N.getPath()
     for n in path:
+        print(n)
+        print()
+
+def reportExpanded(expanded):
+    print("The number of nodes expanded is : %d" % len(expanded))
+    print()
+    print("The nodes expanded are: ")
+    for n in expanded:
         print(n)
         print()
