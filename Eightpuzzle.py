@@ -4,7 +4,6 @@ import copy
 '''
 0: blank
 N: Tile N
-
 '''
 # 3 + 1 + 1 + 1 + 1 + 1 + 2
 
@@ -16,8 +15,8 @@ goal_state = ([[0, 1, 2],
                [3, 4, 5],
                [6, 7, 8]])
 
-
 class node:
+    
     goal = []
     def __init__(self, state, parent):
         self.puzzle = state

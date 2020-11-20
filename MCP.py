@@ -19,6 +19,29 @@ RG = [3,3,1]
 RT = [2,2,1]
 LT = [1,1,0]
 
+class node:
+  goal = []
+  def __init__(self, state, parent):
+      self.puzzle = state
+      self.parent = 0
+      self.parent = parent
+
+  def setGoal(self,Goal):
+      self.goal = Goal
+
+  def getPath(self):
+      path = []
+      prev = self.parent
+      while(prev != 0):
+          path.append(prev.puzzle)
+          prev = prev.parent
+      path.reverse()
+      path.append(self.puzzle)
+      return path
+
+  def __gt__(self, other):
+      return self.puzzle > other.puzzle
+
 def goal_test(state, goal):
   L = state[0:3]
   R = state[3:]
@@ -29,8 +52,9 @@ def goal_test(state, goal):
   else:
       return False
 
-def step_cost():
-    return 1
+def pathcost(N):
+  path = N.getPath()
+  return len(path)
 
 '''
 move1(direction, cannibal/missionary)
@@ -289,7 +313,7 @@ def successor_function(state):
       final.append(L_outcomes[i] + R_outcomes[i])
     return final
 
-def heuristic(state):
+def heuristic(state, goal):
   Li = state[0:3]
   return (Li[0] + Li[1])
 

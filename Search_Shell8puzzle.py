@@ -1,7 +1,9 @@
 # function names are successor_function, goal_test, and heuristic
 from queue import Queue, PriorityQueue
 import numpy as np
-from Eightpuzzle import successor_function, goal_test, heuristic, pathcost, node
+# from Eightpuzzle import successor_function, goal_test, heuristic, pathcost, node
+# from MCP import successor_function, goal_test, heuristic, pathcost, node
+from PegSolitaire import successor_function, goal_test, heuristic, pathcost, node
 # choice = eval(input("1 for 8 puzzle, stkhra you for the rest: "))
 # if choice == 1:
 #     import Eightpuzzle
@@ -14,6 +16,25 @@ initial_state = [[1, 4, 2],
 goal_state = [[0, 1, 2],
               [3, 4, 5],
               [6, 7, 8]]
+
+initial_state = [3,3,1,0,0,0]
+goal_state = [0,0,0,3,3,1]
+
+initial_state = [       [2, 2, 0, 0, 0, 2, 2], 
+                        [2, 2, 0, 0, 0, 2, 2],
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 1, 1, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0], 
+                        [2, 2, 0, 0, 0, 2, 2],
+                        [2, 2, 0, 0, 0, 2, 2]   ]
+
+goal_state = [          [2, 2, 0, 0, 0, 2, 2], 
+                        [2, 2, 0, 0, 0, 2, 2],
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 1, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0], 
+                        [2, 2, 0, 0, 0, 2, 2],
+                        [2, 2, 0, 0, 0, 2, 2]   ]
 
 G = node(goal_state, 0)
 G.setGoal(goal_state)
@@ -122,5 +143,7 @@ def AStar(state, goal):
 print()
 print(greedyBFS(initial_state, goal_state).getPath())
 print()
+d = uninformed_BFS(initial_state, goal_state).getPath()
+print(d)
 print()
 print(AStar(initial_state, goal_state).getPath() )

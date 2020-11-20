@@ -30,14 +30,38 @@ goal_state = [          [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2],
                         [2, 2, 0, 0, 0, 2, 2]   ]
 
+class node:
+    goal = []
+    def __init__(self, state, parent):
+        self.puzzle = state
+        self.parent = 0
+        self.parent = parent
+
+    def setGoal(self,Goal):
+        self.goal = Goal
+
+    def getPath(self):
+        path = []
+        prev = self.parent
+        while(prev != 0):
+            path.append(prev.puzzle)
+            prev = prev.parent
+        path.reverse()
+        path.append(self.puzzle)
+        return path
+
+    def __gt__(self, other):
+        return self.puzzle > other.puzzle
+
 def goal_test(state, goal_state): # Make it return a bool to be used in search strategy
     if state == goal_state:
         return True
     else:
         return False
 
-def step_cost():
-    return 1
+def pathcost(N):
+    path = N.getPath()
+    return len(path)
 
 def possible_moves_from_index(state, index):
     moves = [] # 2D list to return possible indices to which the peg can move to
@@ -102,8 +126,9 @@ def successor_function(state):
                     outcomes.append(backup_state)
                     backup_state = deepcopy(state)
     return outcomes
-def heuristic(state):  # reaching the goal entails the number of pegs reducing until we reach 1 peg in the middle with no possible moves.
-                                # the heuristic will rely on the number of remaining pegs and the possible moves from each one 
+
+def heuristic(state, goal):  # reaching the goal entails the number of pegs reducing until we reach 1 peg in the middle with no possible moves.
+                             # the heuristic will rely on the number of remaining pegs and the possible moves from each one 
     count = 0
     for row in range(7):
         for col in range(7):
