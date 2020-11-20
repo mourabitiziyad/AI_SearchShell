@@ -16,6 +16,21 @@ goal_state = ([[0, 1, 2],
                [3, 4, 5],
                [6, 7, 8]])
 
+class node:
+    def __init__(self, state, parent):
+        self.puzzle = state
+        self.parent = 0
+        self.parent = parent
+    
+    def getPath(self):
+        path = []
+        prev = self.parent
+        while(prev != 0):
+            path.append(prev.puzzle)
+            prev = prev.parent
+            
+        return path
+
 
 def goal_test(state, goal_state):
     if state == goal_state:

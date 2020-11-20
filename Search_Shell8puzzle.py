@@ -1,7 +1,7 @@
 # function names are successor_function, goal_test, and heuristic
 from queue import Queue, PriorityQueue
 import numpy as np
-from Eightpuzzle import successor_function, goal_test, heuristic, pathcost
+from Eightpuzzle import successor_function, goal_test, heuristic, pathcost, node
 # choice = eval(input("1 for 8 puzzle, stkhra you for the rest: "))
 # if choice == 1:
 #     import Eightpuzzle
@@ -19,6 +19,7 @@ goal_state = [[0, 1, 2],
 
 
 def uninformed_BFS(state, goal):
+    beg = node(state,0)
     if(goal_test(state, goal)):
         return state
     q = Queue()
@@ -26,13 +27,14 @@ def uninformed_BFS(state, goal):
     checked.append(state)
     nodes = successor_function(state)
     for n in nodes:
-        q.put(n)
+        N = node(n, beg)
+        q.put(N)
     while q.empty() == False:
-        n = q.get_nowait()
-        if(goal_test(n, goal)):
-            return n
-        checked.append(n)
-        nodes = successor_function(n)
+        N = q.get_nowait()
+        if(goal_test(N.puzzle, goal)):
+            return N
+        checked.append(N.puzzle)
+        nodes = successor_function(N.puzzle)
         flag = False
         for i in nodes:
             flag = False
@@ -43,10 +45,11 @@ def uninformed_BFS(state, goal):
                     flag = True
                     break
             if flag == False:
-                q.put(i)
+                I = node(i,N)
+                q.put(I)
             # else:
             #     print('H')
-    return 0
+    return beg
 
 def greedyBFS(state, goal):
     if(goal_test(state, goal)):
@@ -83,4 +86,5 @@ def greedyBFS(state, goal):
 
 # print(uninformed_BFS(initial_state, goal_state))
 print()
-print(greedyBFS(initial_state, goal_state))
+# print(greedyBFS(initial_state, goal_state))
+print(uninformed_BFS(initial_state, goal_state).getPath() )
