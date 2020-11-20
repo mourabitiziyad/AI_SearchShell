@@ -4,42 +4,10 @@ import numpy as np
 import Eightpuzzle
 import MCP
 import PegSolitaire
-# from Eightpuzzle import successor_function, goal_test, heuristic, pathcost, node
-# from MCP import successor_function, goal_test, heuristic, pathcost, node
-# from PegSolitaire import successor_function, goal_test, heuristic, pathcost, node
-# choice = eval(input("1 for 8 puzzle, stkhra you for the rest: "))
-# if choice == 1:
-#     import Eightpuzzle
-
-# We should normally/probably take these as input and make them into the format we need
-initial_state = [[1, 4, 2],
-                 [3, 7, 5],
-                 [6, 8, 0]]
-
-goal_state = [[0, 1, 2],
-              [3, 4, 5],
-              [6, 7, 8]]
-
-initial_state = [3,3,1,0,0,0]
-goal_state = [0,0,0,3,3,1]
-
-initial_state = [       [2, 2, 0, 0, 0, 2, 2], 
-                        [2, 2, 0, 0, 0, 2, 2],
-                        [0, 0, 0, 0, 0, 0, 0],
-                        [0, 1, 1, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0], 
-                        [2, 2, 0, 0, 0, 2, 2],
-                        [2, 2, 0, 0, 0, 2, 2]   ]
-
-goal_state = [          [2, 2, 0, 0, 0, 2, 2], 
-                        [2, 2, 0, 0, 0, 2, 2],
-                        [0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 1, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0], 
-                        [2, 2, 0, 0, 0, 2, 2],
-                        [2, 2, 0, 0, 0, 2, 2]   ]
 
 def uninformed_DFS(game, state, goal):
+    G = game.node(goal, 0)
+    G.setGoal(goal)
     beg = game.node(state,0)
     if(game.goal_test(state, goal)):
         return state
@@ -80,13 +48,13 @@ def uninformed_DFS(game, state, goal):
 
 
 def uninformed_BFS(game, state, goal):
-    G = game.node(goal_state, 0)
-    G.setGoal(goal_state)
+    G = game.node(goal, 0)
+    G.setGoal(goal)
     beg = game.node(state,0)
     if(game.goal_test(state, goal)):
         return state
-    q = Queue()
-    checked = []
+    q = Queue() # This is the fringe
+    checked = [] # This is the closed list
     checked.append(state)
     nodes = game.successor_function(state)
     for n in nodes:
@@ -115,13 +83,13 @@ def uninformed_BFS(game, state, goal):
     return beg
 
 def greedyBFS(game, state, goal):
-    G = game.node(goal_state, 0)
-    G.setGoal(goal_state)
+    G = game.node(goal, 0)
+    G.setGoal(goal)
     beg = game.node(state,0)
     if(game.goal_test(state, goal)):
         return state
-    q = PriorityQueue()
-    checked = []
+    q = PriorityQueue() # This is the fringe
+    checked = [] # This is the closed list
     checked.append(state)
     nodes = game.successor_function(state)
     for n in nodes:
@@ -150,13 +118,13 @@ def greedyBFS(game, state, goal):
     return 0
 
 def AStar(game, state, goal):
-    G = game.node(goal_state, 0)
-    G.setGoal(goal_state)
+    G = game.node(goal, 0)
+    G.setGoal(goal)
     beg = game.node(state,0)
     if(game.goal_test(state, goal)):
         return state
-    q = PriorityQueue()
-    checked = []
+    q = PriorityQueue() # this is the frontier
+    checked = [] # this is the closed list
     checked.append(state)
     nodes = game.successor_function(state)
     for n in nodes:
