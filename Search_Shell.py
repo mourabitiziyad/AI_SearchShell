@@ -1,11 +1,12 @@
 # function names are successor_function, goal_test, and heuristic
 from queue import Queue, PriorityQueue
-import numpy as np
+import time
 import Eightpuzzle
 import MCP
 import PegSolitaire
 
-def uninformed_DFS(game, state, goal):
+def uninformed_DFS(game, state, goal, timeout):
+    start_time = time.time()
     G = game.node(goal, 0)
     G.setGoal(goal)
     beg = game.node(state,0)
@@ -34,6 +35,8 @@ def uninformed_DFS(game, state, goal):
         for i in nodes:
             flag = False
             for c in checked:
+                if time.time() - start_time > timeout:
+                    return 404
                 # comparison = i == c
                 # equal = comparison.all()
                 if i == c:
@@ -47,7 +50,8 @@ def uninformed_DFS(game, state, goal):
     return beg
 
 
-def uninformed_BFS(game, state, goal):
+def uninformed_BFS(game, state, goal, timeout):
+    start_time = time.time()
     G = game.node(goal, 0)
     G.setGoal(goal)
     beg = game.node(state,0)
@@ -70,6 +74,8 @@ def uninformed_BFS(game, state, goal):
         for i in nodes:
             flag = False
             for c in checked:
+                if time.time() - start_time > timeout:
+                    return 404
                 # comparison = i == c
                 # equal = comparison.all()
                 if i == c:
@@ -82,7 +88,8 @@ def uninformed_BFS(game, state, goal):
             #     print('H')
     return beg
 
-def greedyBFS(game, state, goal):
+def greedyBFS(game, state, goal, timeout):
+    start_time = time.time()
     G = game.node(goal, 0)
     G.setGoal(goal)
     beg = game.node(state,0)
@@ -108,6 +115,8 @@ def greedyBFS(game, state, goal):
         for i in nodes:
             flag = False
             for c in checked:
+                if time.time() - start_time > timeout:
+                    return 404
                 if i == c:
                     flag = True
                     break
@@ -117,7 +126,8 @@ def greedyBFS(game, state, goal):
             
     return 0
 
-def AStar(game, state, goal):
+def AStar(game, state, goal, timeout):
+    start_time = time.time()
     G = game.node(goal, 0)
     G.setGoal(goal)
     beg = game.node(state,0)
@@ -143,6 +153,8 @@ def AStar(game, state, goal):
         for i in nodes:
             flag = False
             for c in checked:
+                if time.time() - start_time > timeout:
+                    return 404
                 if i == c:
                     flag = True
                     break

@@ -2,6 +2,7 @@ import Search_Shell
 import MCP
 import PegSolitaire
 import Eightpuzzle
+import time
 
 PegSolitaire_initial_state = [          [2, 2, 0, 0, 0, 2, 2], 
                                         [2, 2, 0, 0, 0, 2, 2],
@@ -10,6 +11,13 @@ PegSolitaire_initial_state = [          [2, 2, 0, 0, 0, 2, 2],
                                         [0, 0, 0, 0, 0, 0, 0], 
                                         [2, 2, 0, 0, 0, 2, 2],
                                         [2, 2, 0, 0, 0, 2, 2]   ]
+# PegSolitaire_initial_state = [      [2, 2, 1, 1, 1, 2, 2], 
+#                                     [2, 2, 1, 1, 1, 2, 2],
+#                                     [1, 1, 1, 1, 1, 1, 1],
+#                                     [1, 1, 1, 0, 1, 1, 1],
+#                                     [1, 1, 1, 1, 1, 1, 1],
+#                                     [2, 2, 1, 1, 1, 2, 2], 
+#                                     [2, 2, 1, 1, 1, 2, 2]   ]
 PegSolitaire_goal_state = [         [2, 2, 0, 0, 0, 2, 2], 
                                     [2, 2, 0, 0, 0, 2, 2],
                                     [0, 0, 0, 0, 0, 0, 0],
@@ -28,7 +36,8 @@ Eightpuzzle_goal_state = [[0, 1, 2],
 MCP_initial_state = [3,3,1,0,0,0]
 MCP_goal_state = [0,0,0,3,3,1]
 
-def peg():
+
+def peg(timeout):
     print("\n")
     print("# # # # # # # # # # # # # # # # # # # # # # #")
     print("#                                           #")
@@ -47,7 +56,6 @@ def peg():
     print("#       4 - A* Search                       #")
     print("#       5 - Go back to Menu                 #")
     print("#                                           #")
-    print("#                                           #")
     print("# # # # # # # # # # # # # # # # # # # # # # #")
 
     choice = (input("\n     Choose:   ") )
@@ -55,28 +63,47 @@ def peg():
         print("\n     Wrong Value!   ")
         choice = (input("\n     Choose:   "))
     choice = int(choice)
+    print("\n     Timeout is: ", timeout, "seconds")
     if choice == 1:
-        print("\n     Implementing Depth-First Search...   ")
-        print(Search_Shell.uninformed_DFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
-        peg()
+        print("\n     Implementing Depth-First Search...   ") 
+        out = Search_Shell.uninformed_DFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state, timeout)
+        if out == 404:
+            print("\n     Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        peg(timeout)
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
-        print(Search_Shell.uninformed_BFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
-        peg()
+        out = Search_Shell.uninformed_BFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state, timeout)
+        if out == 404:
+            print("\n     Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        peg(timeout)
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
-        print(Search_Shell.greedyBFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
-        peg()
+        out = Search_Shell.greedyBFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state, timeout)
+        if out == 404:
+            print("\n     Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        peg(timeout)
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
-        print(Search_Shell.AStar(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
-        peg()
+        out = Search_Shell.AStar(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state, timeout)
+        if out == 404:
+            print("\n     Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        peg(timeout)
     elif choice == 5:
-        main()
+        main(timeout)
+        
+
     
     return 0
 
-def eight():
+def eight(timeout):
     print("\n")
     print("# # # # # # # # # # # # # # # # # # # # # # #")
     print("#                                           #")
@@ -95,7 +122,6 @@ def eight():
     print("#       4 - A* Search                       #")
     print("#       5 - Go back to Menu                 #")
     print("#                                           #")
-    print("#                                           #")
     print("# # # # # # # # # # # # # # # # # # # # # # #")
 
     choice = (input("\n     Choose:   ") )
@@ -103,27 +129,44 @@ def eight():
         print("\n     Wrong Value!   ")
         choice = (input("\n     Choose:   "))
     choice = int(choice)
+    print("\n     Timeout is: ", timeout, "seconds")
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
-        print(Search_Shell.uninformed_DFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
-        eight()
+        out = Search_Shell.uninformed_DFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state, timeout)
+        if out == 404:
+            print("\n     Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        eight(timeout)
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
-        print(Search_Shell.uninformed_BFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
-        eight()
+        out = Search_Shell.uninformed_BFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state, timeout)
+        if out == 404:
+            print("\n     Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        eight(timeout)
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
-        print(Search_Shell.greedyBFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
-        eight()
+        out = Search_Shell.greedyBFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state, timeout)
+        if out == 404:
+            print("\n     Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        eight(timeout)
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
-        print(Search_Shell.AStar(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
-        eight()
+        out = Search_Shell.AStar(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state, timeout)
+        if out == 404:
+            print("\n     Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        eight(timeout)
     elif choice == 5:
-        main()
+        main(timeout)
     return 0
 
-def cannibals():
+def cannibals(timeout):
     print("\n")
     print("# # # # # # # # # # # # # # # # # # # # # # #")
     print("#                                           #")
@@ -143,7 +186,6 @@ def cannibals():
     print("#       4 - A* Search                       #")
     print("#       5 - Go back to Menu                 #")
     print("#                                           #")
-    print("#                                           #")
     print("# # # # # # # # # # # # # # # # # # # # # # #")
 
     choice = (input("\n     Choose:   ") )
@@ -151,27 +193,45 @@ def cannibals():
         print("\n     Wrong Value!   ")
         choice = (input("\n     Choose:   "))
     choice = int(choice)
+    print("\n     Timeout is: ", timeout, "seconds")
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
-        print(Search_Shell.uninformed_DFS(MCP, MCP_initial_state, MCP_goal_state).getPath())
-        cannibals()
+        out = Search_Shell.uninformed_DFS(MCP, MCP_initial_state, MCP_goal_state, timeout)
+        if out == 404:
+            print("Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        cannibals(timeout)
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
-        print(Search_Shell.uninformed_BFS(MCP, MCP_initial_state, MCP_goal_state).getPath())
-        cannibals()
+        out = Search_Shell.uninformed_BFS(MCP, MCP_initial_state, MCP_goal_state, timeout)
+        if out == 404:
+            print("Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        cannibals(timeout)
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
-        print(Search_Shell.greedyBFS(MCP, MCP_initial_state, MCP_goal_state).getPath())
-        cannibals()
+        out = Search_Shell.greedyBFS(MCP, MCP_initial_state, MCP_goal_state, timeout)
+        if out == 404:
+            print("Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        cannibals(timeout)
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
-        print(Search_Shell.AStar(MCP, MCP_initial_state, MCP_goal_state).getPath())
-        cannibals()
+        out = Search_Shell.AStar(MCP, MCP_initial_state, MCP_goal_state, timeout)
+        if out == 404:
+            print("Time limit set by user has been exceeded!")
+        else:
+            print(out.getPath())
+        cannibals(timeout)
     elif choice == 5:
-        main()
+        main(timeout)
     return 0
 
-def main():
+def main(timeout):
+
     print("\n")
     print("# # # # # # # # # # # # # # # # # # # # # # #")
     print("#                                           #")
@@ -189,22 +249,33 @@ def main():
     print("#        3 - Missionaries & Cannibals       #")
     print("#        0 - End Program                    #")
     print("#                                           #")
+    print("#       algorithms may take too long,       #")
+    print("#         You can set a timeout to          #")
+    print("#              stop execution               #")
+    print("#                                           #")
+    print("#        6 - Set timeout (default is 10s)   #")
     print("#                                           #")
     print("# # # # # # # # # # # # # # # # # # # # # # #")
 
     choice = (input("\n     Choose:   ") )
-    while choice != '1' and choice != '2' and choice != '3' and choice != '0':
+    while choice != '1' and choice != '2' and choice != '3' and choice != '0' and choice != '6':
         print("\n     Wrong Value!   ")
         choice = (input("\n     Choose:   "))
     choice = int(choice)
+    print("\n     Timeout is: ", timeout, "seconds")
     if choice == 1:
-        eight()
+        eight(timeout)
     elif choice == 2:
-        peg()
+        peg(timeout)
     elif choice == 3:
-        cannibals()
+        cannibals(timeout)
     elif choice == 0:
         print("\n     Have a nice day!   ")
         return
+    elif choice == 6:
+        timeout = eval(input("\n     Set a timeout (seconds) in order not to get stuck solving a problem:   "))
+        main(timeout)
 
-main()
+
+timeout = 10
+main(timeout)

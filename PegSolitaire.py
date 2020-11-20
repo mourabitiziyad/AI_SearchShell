@@ -136,16 +136,4 @@ def heuristic(state, goal):  # reaching the goal entails the number of pegs redu
             count += len(moves)
     return count
 
-# out, vis = successor_function(test_state)
-# count = heuristic(test_state)
-# print("the count is: ", count)
-# print("initial test state")
-# for i in test_state:
-#     print (i)
-# print("\n##################\n")
-# print("action, states")
-# for i in vis:
-#     for f in i:
-#         print (f)
-#     print("\n")
  

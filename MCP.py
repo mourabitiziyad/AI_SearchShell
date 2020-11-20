@@ -327,10 +327,3 @@ The relaxation we choose is if the cannibals didn't eat the missionaries, meanin
 In this scenario, the number of people in the left bank (in this relaxed problem) will be less than the usual problem. 
 '''
 
-LT = [3,3,1]
-RT = [0,0,0]
-
-# final = successor_function(LT+RT)
-# goa = goal_test(LT+RT, LT+RT)
-# print(goa)
-
