@@ -11,13 +11,6 @@ PegSolitaire_initial_state = [          [2, 2, 0, 0, 0, 2, 2],
                                         [0, 0, 0, 0, 0, 0, 0], 
                                         [2, 2, 0, 0, 0, 2, 2],
                                         [2, 2, 0, 0, 0, 2, 2]   ]
-# PegSolitaire_initial_state = [      [2, 2, 1, 1, 1, 2, 2], 
-#                                     [2, 2, 1, 1, 1, 2, 2],
-#                                     [1, 1, 1, 1, 1, 1, 1],
-#                                     [1, 1, 1, 0, 1, 1, 1],
-#                                     [1, 1, 1, 1, 1, 1, 1],
-#                                     [2, 2, 1, 1, 1, 2, 2], 
-#                                     [2, 2, 1, 1, 1, 2, 2]   ]
 PegSolitaire_goal_state = [         [2, 2, 0, 0, 0, 2, 2], 
                                     [2, 2, 0, 0, 0, 2, 2],
                                     [0, 0, 0, 0, 0, 0, 0],
@@ -66,35 +59,35 @@ def peg(timeout):
     print("\n     Timeout is: ", timeout, "seconds")
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ") 
+        start_time = time.time()
         out = Search_Shell.uninformed_DFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state, timeout)
         if out == 404:
             print("\n     Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         peg(timeout)
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
+        start_time = time.time()
         out = Search_Shell.uninformed_BFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state, timeout)
         if out == 404:
             print("\n     Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         peg(timeout)
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
+        start_time = time.time()
         out = Search_Shell.greedyBFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state, timeout)
         if out == 404:
             print("\n     Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         peg(timeout)
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
+        start_time = time.time()
         out = Search_Shell.AStar(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state, timeout)
         if out == 404:
             print("\n     Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         peg(timeout)
     elif choice == 5:
         main(timeout)
@@ -132,35 +125,35 @@ def eight(timeout):
     print("\n     Timeout is: ", timeout, "seconds")
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
+        start_time = time.time()
         out = Search_Shell.uninformed_DFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state, timeout)
         if out == 404:
             print("\n     Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         eight(timeout)
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
+        start_time = time.time()
         out = Search_Shell.uninformed_BFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state, timeout)
         if out == 404:
             print("\n     Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         eight(timeout)
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
+        start_time = time.time()
         out = Search_Shell.greedyBFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state, timeout)
         if out == 404:
             print("\n     Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         eight(timeout)
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
+        start_time = time.time()
         out = Search_Shell.AStar(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state, timeout)
         if out == 404:
             print("\n     Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         eight(timeout)
     elif choice == 5:
         main(timeout)
@@ -196,35 +189,35 @@ def cannibals(timeout):
     print("\n     Timeout is: ", timeout, "seconds")
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
+        start_time = time.time()
         out = Search_Shell.uninformed_DFS(MCP, MCP_initial_state, MCP_goal_state, timeout)
         if out == 404:
             print("Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         cannibals(timeout)
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
+        start_time = time.time()
         out = Search_Shell.uninformed_BFS(MCP, MCP_initial_state, MCP_goal_state, timeout)
         if out == 404:
             print("Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         cannibals(timeout)
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
+        start_time = time.time()
         out = Search_Shell.greedyBFS(MCP, MCP_initial_state, MCP_goal_state, timeout)
         if out == 404:
             print("Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         cannibals(timeout)
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
+        start_time = time.time()
         out = Search_Shell.AStar(MCP, MCP_initial_state, MCP_goal_state, timeout)
         if out == 404:
             print("Time limit set by user has been exceeded!")
-        else:
-            print(out.getPath())
+        print ("the algorithm took ", time.time() - start_time, "seconds")
         cannibals(timeout)
     elif choice == 5:
         main(timeout)
