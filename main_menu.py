@@ -57,6 +57,7 @@ def peg():
     choice = int(choice)
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
+        print(Search_Shell.uninformed_DFS(PegSolitaire, PegSolitaire_initial_state, PegSolitaire_goal_state).getPath())
         peg()
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
@@ -104,6 +105,7 @@ def eight():
     choice = int(choice)
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
+        print(Search_Shell.uninformed_DFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
         eight()
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
@@ -151,6 +153,7 @@ def cannibals():
     choice = int(choice)
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
+        print(Search_Shell.uninformed_DFS(MCP, MCP_initial_state, MCP_goal_state).getPath())
         cannibals()
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
