@@ -28,7 +28,8 @@ class node:
         while(prev != 0):
             path.append(prev.puzzle)
             prev = prev.parent
-            
+        path.reverse()
+        path.append(self.puzzle)
         return path
 
 
