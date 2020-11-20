@@ -87,7 +87,13 @@ def successor_function(state):
 
 def heuristic(state, goal):
     # Heuristic chosen is called linear conflicts
-    # Manhattan Distance (usedin the overall heuristic)
+    # Linear conflicts heuristic builds upon Manhattan Distance
+    # We calculate Manhattan Distance, then count conflicting tiles
+    # i.e. tiles that need to switch sides with each other in order
+    # for them to get to their goal, and we add twice that amount
+    # to the already computed Manhattan Distance
+    
+    # Manhattan Distance computation
     MD = 0
     i = 0
     j = 0
