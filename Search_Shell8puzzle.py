@@ -1,7 +1,7 @@
 # function names are successor_function, goal_test, and heuristic
 from queue import Queue, PriorityQueue
 import numpy as np
-from Eightpuzzle import successor_function, goal_test, heuristic
+from Eightpuzzle import successor_function, goal_test, heuristic, pathcost
 # choice = eval(input("1 for 8 puzzle, stkhra you for the rest: "))
 # if choice == 1:
 #     import Eightpuzzle

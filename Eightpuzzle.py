@@ -196,6 +196,9 @@ def heuristic(state, goal):
     return MD + 2 * LC
 
 
+def pathcost(path):
+    return len(path)
+
 # Printing initial node
 # print("Initial State is: ")
 # for i in range(3):
