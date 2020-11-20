@@ -56,12 +56,6 @@ def pathcost(N):
   path = N.getPath()
   return len(path)
 
-'''
-move1(direction, cannibal/missionary)
-move2(direction, cannibal/missionary, cannibal/missionary)
-'''
-
-#Ziyad I think we need to pass Li, Ri to have access to them 
 def move1(Li,Ri, direction, op):
   if direction=='Right':
     Li[2] = 0
@@ -83,8 +77,6 @@ def move1(Li,Ri, direction, op):
       Li[0]+=1
   return Li, Ri
   
-
-#there's probably a way to write move2 in terms of move1 but fleeeme
 def move2 (Li,Ri, direction, op1, op2): 
   if direction=='Right':
     Li[2] = 0
@@ -200,12 +192,6 @@ def successor_function(state):
         R_outcomes.append(Ri)
         Li = deepcopy(orig_L)
         Ri = deepcopy(orig_R)
-      # elif L_balance == 3 and R_balance == -3: 
-      #   Li, Ri = move2(Li, Ri, Left, C, C) #L(3,0)/R(0,3) --> L(3,2)/R(0,1)
-      #   L_outcomes.append(Li)
-      #   R_outcomes.append(Ri)
-      #   Li = deepcopy(orig_L)
-      #   Ri = deepcopy(orig_R)
       #L_balance is only negative around the last few moves, to transport the cannibals to the right where the 3 missionaries are
       elif L_balance == -1 and Ri[0] == 3: 
         Li, Ri = move1(Li, Ri, Right, C) #L(0,1)/R(3,2) --> L(0,0)/R(3,3) (Goal)

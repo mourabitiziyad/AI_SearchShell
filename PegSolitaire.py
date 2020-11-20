@@ -94,7 +94,6 @@ def possible_moves_from_index(state, index):
                 pass
             
         elif state[row][column] == 0:
-            # print("something is wrong with the fringe")
             pass
         else:
             pass

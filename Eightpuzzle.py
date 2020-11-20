@@ -5,7 +5,6 @@ import copy
 0: blank
 N: Tile N
 '''
-# 3 + 1 + 1 + 1 + 1 + 1 + 2
 
 initial_state = ([[7, 2, 1],
                   [6, 0, 5],
@@ -16,7 +15,7 @@ goal_state = ([[0, 1, 2],
                [6, 7, 8]])
 
 class node:
-    
+
     goal = []
     def __init__(self, state, parent):
         self.puzzle = state
@@ -55,28 +54,24 @@ def successor_function(state):
                 brow = i
                 bcol = j
     if brow > 0:  # If blank tile can go up
-        # tempstate = state.copy()
         tempstate = copy.deepcopy(state)
         temp = tempstate[brow][bcol]
         tempstate[brow][bcol] = tempstate[brow-1][bcol]
         tempstate[brow-1][bcol] = temp
         outcomes.append(tempstate)
     if brow < 2:  # If blank tile can go down
-        # tempstate = state.copy()
         tempstate = copy.deepcopy(state)
         temp = tempstate[brow][bcol]
         tempstate[brow][bcol] = tempstate[brow+1][bcol]
         tempstate[brow+1][bcol] = temp
         outcomes.append(tempstate)
     if bcol > 0:  # If blank tile can go left
-        # tempstate = state.copy()
         tempstate = copy.deepcopy(state)
         temp = tempstate[brow][bcol]
         tempstate[brow][bcol] = tempstate[brow][bcol-1]
         tempstate[brow][bcol-1] = temp
         outcomes.append(tempstate)
     if bcol < 2:  # If blank tile can go right
-        # tempstate = state.copy()
         tempstate = copy.deepcopy(state)
         temp = tempstate[brow][bcol]
         tempstate[brow][bcol] = tempstate[brow][bcol+1]
@@ -194,15 +189,3 @@ def heuristic(state, goal):
 def pathcost(N):
     path = N.getPath()
     return len(path)
-
-# Printing initial node
-# print("Initial State is: ")
-# for i in range(3):
-#     for j in range(3):
-#         print(initial_state[i][j], end='')
-#     print()
-# print()
-# print()
-
-
-# print(heuristic(initial_state, goal_state))

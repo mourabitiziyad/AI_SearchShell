@@ -18,7 +18,8 @@ def uninformed_DFS(game, state, goal, timeout):
     nodes = [] # list of successor states
 
     checked.append(state) 
-    """insert is used as a push function. 
+    """
+    insert is used as a push function. 
     List.insert(i, elem) --> lem is inserted to the list at the ith index. 
     All the elements after elem are shifted to the right.
     """
@@ -41,16 +42,12 @@ def uninformed_DFS(game, state, goal, timeout):
             for c in checked:
                 if time.time() - start_time > timeout:
                     return 404
-                # comparison = i == c
-                # equal = comparison.all()
                 if i == c:
                     flag = True
                     break
             if flag == False:
                 I = game.node(i,N)
                 fringe.insert(0, I) 
-            # else:
-            #     print('H')
     return beg
 
 
@@ -84,16 +81,12 @@ def uninformed_BFS(game, state, goal, timeout):
             for c in checked:
                 if time.time() - start_time > timeout:
                     return 404
-                # comparison = i == c
-                # equal = comparison.all()
                 if i == c:
                     flag = True
                     break
             if flag == False:
                 I = game.node(i,N)
                 q.put(I)
-            # else:
-            #     print('H')
     return 0
 
 def greedyBFS(game, state, goal, timeout):
@@ -114,8 +107,6 @@ def greedyBFS(game, state, goal, timeout):
     while q.empty() == False:
         N = q.get()
         N = N[1]
-        # print(n)
-        # return
         if(game.goal_test(N.puzzle, goal)):
             reportPath(N)
             checked.append(N.puzzle)
@@ -156,8 +147,6 @@ def AStar(game, state, goal, timeout):
     while q.empty() == False:
         N = q.get()
         N = N[1]
-        # print(n)
-        # return
         if(game.goal_test(N.puzzle, goal)):
             reportPath(N)
             checked.append(N.puzzle)
