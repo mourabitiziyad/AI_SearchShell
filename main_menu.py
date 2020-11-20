@@ -105,15 +105,19 @@ def eight():
     choice = int(choice)
     if choice == 1:
         print("\n     Implementing Depth-First Search...   ")
+        print(Search_Shell.uninformed_DFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
         eight()
     elif choice == 2:
         print("\n     Implementing Breadth-First Search...   ")
+        print(Search_Shell.uninformed_BFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
         eight()
     elif choice == 3:
         print("\n     Implementing Greedy Breadth-First Search...   ")
+        print(Search_Shell.greedyBFS(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
         eight()
     elif choice == 4:
         print("\n     Implementing A* Search...   ")
+        print(Search_Shell.AStar(Eightpuzzle, Eightpuzzle_initial_state, Eightpuzzle_goal_state).getPath())
         eight()
     elif choice == 5:
         main()
