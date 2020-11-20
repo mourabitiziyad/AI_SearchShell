@@ -16,12 +16,17 @@ goal_state = ([[0, 1, 2],
                [3, 4, 5],
                [6, 7, 8]])
 
+
 class node:
+    goal = []
     def __init__(self, state, parent):
         self.puzzle = state
         self.parent = 0
         self.parent = parent
-    
+
+    def setGoal(self,Goal):
+        self.goal = Goal
+
     def getPath(self):
         path = []
         prev = self.parent
@@ -32,46 +37,15 @@ class node:
         path.append(self.puzzle)
         return path
 
+    def __gt__(self, other):
+        return self.puzzle > other.puzzle
+
 
 def goal_test(state, goal_state):
     if state == goal_state:
         return True
     else:
         return False
-
-
-# def successor_function(state):
-#     outcomes = []
-#     for i in range(3):  # Locating the blank tile
-#         for j in range(3):
-#             if state[i][j] == 0:
-#                 brow = i
-#                 bcol = j
-#     if brow > 0:  # If blank tile can go up
-#         tempstate = state.copy()
-#         temp = tempstate[brow][bcol]
-#         tempstate[brow][bcol] = tempstate[brow-1][bcol]
-#         tempstate[brow-1][bcol] = temp
-#         outcomes.append(tempstate)
-#     if brow < 2:  # If blank tile can go down
-#         tempstate = state.copy()
-#         temp = tempstate[brow][bcol]
-#         tempstate[brow][bcol] = tempstate[brow+1][bcol]
-#         tempstate[brow+1][bcol] = temp
-#         outcomes.append(tempstate)
-#     if bcol > 0:  # If blank tile can go left
-#         tempstate = state.copy()
-#         temp = tempstate[brow][bcol]
-#         tempstate[brow][bcol] = tempstate[brow][bcol-1]
-#         tempstate[brow][bcol-1] = temp
-#         outcomes.append(tempstate)
-#     if bcol < 2:  # If blank tile can go right
-#         tempstate = state.copy()
-#         temp = tempstate[brow][bcol]
-#         tempstate[brow][bcol] = tempstate[brow][bcol+1]
-#         tempstate[brow][bcol+1] = temp
-#         outcomes.append(tempstate)
-#     return outcomes
 
 
 def successor_function(state):
@@ -115,12 +89,12 @@ def successor_function(state):
 def heuristic(state, goal):
     # Heuristic chosen is called linear conflicts
     # Manhattan Distance (usedin the overall heuristic)
-    MD =0
+    MD = 0
     i = 0
     j = 0
     for i in range(3):
         for j in range(3):
-            #Look up the tile in the goal state
+            # Look up the tile in the goal state
             Gi = 0
             Gj = 0
             for Gi in range(3):
@@ -129,7 +103,7 @@ def heuristic(state, goal):
                         if state[i][j] == goal[Gi][Gj]:
                             MD += abs(i - Gi) + abs(j - Gj)
                             break
-            
+
     # Total heuristic is Manhattan Distance plus two times the liner conflicts
     LC = 0
     # We proceed row by row
@@ -212,7 +186,8 @@ def heuristic(state, goal):
     return MD + 2 * LC
 
 
-def pathcost(path):
+def pathcost(N):
+    path = N.getPath()
     return len(path)
 
 # Printing initial node
@@ -226,5 +201,3 @@ def pathcost(path):
 
 
 # print(heuristic(initial_state, goal_state))
-
-
