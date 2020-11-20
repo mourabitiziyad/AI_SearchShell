@@ -15,7 +15,8 @@ goal_state = [[0, 1, 2],
               [3, 4, 5],
               [6, 7, 8]]
 
-
+G = node(goal_state, 0)
+G.setGoal(goal_state)
 
 
 def uninformed_BFS(state, goal):
@@ -52,6 +53,7 @@ def uninformed_BFS(state, goal):
     return beg
 
 def greedyBFS(state, goal):
+    beg = node(state,0)
     if(goal_test(state, goal)):
         return state
     q = PriorityQueue()
@@ -59,17 +61,17 @@ def greedyBFS(state, goal):
     checked.append(state)
     nodes = successor_function(state)
     for n in nodes:
-        q.put((heuristic(n, goal), n))
+        N = node(n, beg)
+        q.put((heuristic(n, goal), N))
     while q.empty() == False:
-        # print(q.queue)
-        n = q.get()
-        n = n[1]
+        N = q.get()
+        N = N[1]
         # print(n)
         # return
-        if(goal_test(n, goal)):
-            return n
-        checked.append(n)
-        nodes = successor_function(n)
+        if(goal_test(N.puzzle, goal)):
+            return N
+        checked.append(N.puzzle)
+        nodes = successor_function(N.puzzle)
         flag = False
         for i in nodes:
             flag = False
@@ -78,13 +80,47 @@ def greedyBFS(state, goal):
                     flag = True
                     break
             if flag == False:
-                q.put((heuristic(i,goal), i))
-            # else:
-                # print("Visited")
+                I = node(i,N)
+                q.put((heuristic(i,goal), I))
+            
     return 0
 
+def AStar(state, goal):
+    beg = node(state,0)
+    if(goal_test(state, goal)):
+        return state
+    q = PriorityQueue()
+    checked = []
+    checked.append(state)
+    nodes = successor_function(state)
+    for n in nodes:
+        N = node(n, beg)
+        q.put((heuristic(n, goal) + pathcost(N), N))
+    while q.empty() == False:
+        N = q.get()
+        N = N[1]
+        # print(n)
+        # return
+        if(goal_test(N.puzzle, goal)):
+            return N
+        checked.append(N.puzzle)
+        nodes = successor_function(N.puzzle)
+        flag = False
+        for i in nodes:
+            flag = False
+            for c in checked:
+                if i == c:
+                    flag = True
+                    break
+            if flag == False:
+                I = node(i,N)
+                q.put((heuristic(i,goal) + pathcost(I), I))
+            
+    return 0
 
 # print(uninformed_BFS(initial_state, goal_state))
 print()
-# print(greedyBFS(initial_state, goal_state))
-print(uninformed_BFS(initial_state, goal_state).getPath() )
+print(greedyBFS(initial_state, goal_state).getPath())
+print()
+print()
+print(AStar(initial_state, goal_state).getPath() )
