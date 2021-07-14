@@ -1,7 +1,7 @@
 # AI_SearchShell
 
 Hamza Ait Hssayne - Oussama Tlaghi - Ziyad Mourabiti
- 
+
 1. Documentation describing exactly how you managed that separation and what the user must do in order to test out your search shell with different puzzles. 
 
 We created a main_menu, in which the user can select the game and the search strategy that they want to be applied. Upon selecting, the solution path is printed for them. The different search strategies in the Search Shell file are given the name of the game and the corresponding initial/goal state. 
